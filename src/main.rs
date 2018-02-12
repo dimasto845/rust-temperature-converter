@@ -1,11 +1,40 @@
+use std::io;
+
 const OFFSET: f64 = 32.0;
 const WEIGHT_FACTOR: f64 = 5.0/9.0;
 
 fn main() {
-    let boiling = celcius_to_fahrenheit(100.0);
-    let freezing = fahrenheit_to_celcius(32.0);
-    println!("Boiling in fahrenheit is {}.", boiling);
-    println!("Freezing in celcius is {}.", freezing);
+    println!("Enter value:");
+
+    let mut value = String::new();
+
+    io::stdin().read_line(&mut value)
+        .expect("Failed to read line");
+
+    let value: f64 = value.trim().parse()
+        .expect("Cannot parse input.");
+
+    println!("Enter destination tempterature type. (c or f)");
+
+    let mut output_type = String::new();
+
+    io::stdin().read_line(&mut output_type)
+        .expect("Failed to read line");
+
+    let output_type = output_type.trim();
+
+    let mut result = 0.0;
+
+    if output_type == "c"{
+        result = fahrenheit_to_celcius(value);
+    } else if output_type == "f"{
+        result = celcius_to_fahrenheit(value);
+    } else {
+        println!("Invalid destination temperature type.");
+    }
+
+    println!("Input {}.", value);
+    println!("Result {}°{}.", result, output_type);
 }
 
 fn celcius_to_fahrenheit(temp:f64)->f64{
