@@ -1,4 +1,4 @@
-const SUBTRACT_NUM: f64 = 32.0;
+const OFFSET: f64 = 32.0;
 const WEIGHT_FACTOR: f64 = 5.0/9.0;
 
 fn main() {
@@ -9,9 +9,9 @@ fn main() {
 }
 
 fn celcius_to_fahrenheit(temp:f64)->f64{
-    temp / WEIGHT_FACTOR + SUBTRACT_NUM
+    temp / WEIGHT_FACTOR + OFFSET
 }
 
 fn fahrenheit_to_celcius(temp:f64)->f64{
-    (temp - SUBTRACT_NUM) * WEIGHT_FACTOR
+    (temp - OFFSET) * WEIGHT_FACTOR
 }
